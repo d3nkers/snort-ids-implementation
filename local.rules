@@ -1,0 +1,27 @@
+# === Basis Pentest Detectie ===
+# Port Scanning Detectie
+alert tcp any any -> $HOME_NET any (msg:"Nmap TCP SYN Scan Detected"; flags:S; flow:stateless; detection_filter:track by_src, count 15, seconds 5; sid:2000001; rev:1;)
+alert tcp any any -> $HOME_NET any (msg:"Nmap TCP NULL Scan Detected"; flags:0; sid:2000002; rev:1;)
+alert tcp any any -> $HOME_NET any (msg:"Nmap TCP FIN Scan Detected"; flags:F; sid:2000003; rev:1;)
+alert tcp any any -> $HOME_NET any (msg:"Nmap TCP XMAS Scan Detected"; flags:FPU; sid:2000004; rev:1;)
+
+# WiFi Deauth Detectie
+alert udp any any -> any any (msg:"Possible Deauth Attack"; content:"|C0 00|"; offset:0; depth:2; detection_filter:track by_src, count 10, seconds 1; sid:2000010; rev:1;)
+
+# Protocol Anomaly Detection
+alert udp $HOME_NET any -> any 53 (msg:"Sophisticated DNS Tunneling"; content:"|01 00|"; offset:2; depth:2; byte_test:1,>,15,12; detection_filter:track by_src, count 10, seconds 60; sid:3000010; rev:1;)
+
+# Discovery Tools
+alert icmp any any -> $HOME_NET any (msg:"Possible Nmap Ping Sweep"; dsize:0; detection_filter:track by_src, count 5, seconds 1; sid:2000030; rev:1;)
+
+# Service Enumeration
+alert tcp any any -> $HOME_NET 80 (msg:"Nikto Scan Detected"; flow:established,to_server; content:"Nikto"; nocase; sid:2000060; rev:1;)
+
+# API Security Testing
+alert tcp any any -> $HOME_NET $HTTP_PORTS (msg:"API Rate Limit Bypass Attempt"; flow:established,to_server; detection_filter:track by_src, count 100, seconds 60; sid:3000070; rev:1;)
+
+# Memory-Based Attack Detection
+alert tcp any any -> $HOME_NET any (msg:"Buffer Overflow Pattern"; flow:established,to_server; content:"|90 90 90 90 90 90|"; depth:1024; sid:3000090; rev:1;)
+
+# C2 Detection
+alert tcp $HOME_NET any -> any any (msg:"Potential C2 Beacon"; flow:established; detection_filter:track by_src, count 5, seconds 3600; flags:S; sid:3000100; rev:1;)
