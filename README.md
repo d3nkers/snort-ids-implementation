@@ -24,11 +24,11 @@ Complete implementation of a Network Intrusion Detection System (NIDS) using Sno
 ## 🔧 Installation
 
 ### Quick Start
-```bash
+
 git clone https://github.com/[your-username]/snort-ids-implementation.git
 cd snort-ids-implementation
 sudo ./scripts/install.sh
-```
+
 
 ### Detailed Installation
 See [Installation Guide](docs/installation.md) for complete setup instructions.
@@ -58,7 +58,6 @@ See [Installation Guide](docs/installation.md) for complete setup instructions.
 - [Rules Documentation](docs/rules.md)
 - [Troubleshooting Guide](docs/troubleshooting.md)
 
-## 🖼️ Screenshots
 
 ### System Setup
 ![Setup Diagram](images/setup-diagram.png)
@@ -66,17 +65,9 @@ See [Installation Guide](docs/installation.md) for complete setup instructions.
 ### Alert Examples
 ![Alert Examples](images/alerts-example.png)
 
-## 🤝 Contributing
-Contributions, issues, and feature requests are welcome!
-
-## 📝 License
-This project is [MIT](LICENSE) licensed.
-
 ## 👤 Author
-**[Your Name]**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
+**d3nkers**
+- GitHub: [@d3nkers](https://github.com/yourusername)
 
 ## 🌟 Acknowledgments
-- Special thanks to the Snort community
-- Inspiration from real-world security implementations
+- Inspiration for my own experience and understanding what enumeration tools cause at the other end of the line
